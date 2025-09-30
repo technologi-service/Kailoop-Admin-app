@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model catalogo_segmentos_vcs {
+  id                Int     @id @default(autoincrement())
+  segmento_numerico Int     @unique
+  nombre_categoria  String
+  estrellas         Int
+  score_min         Decimal @db.Decimal(3, 1)
+  score_max         Decimal @db.Decimal(3, 1)
+}
+
+model datos_calculados_clientes {
+  id                  Int      @id @default(autoincrement())
+  id_cliente          String?
+  nombre_empresa      String?
+  volumen_total       Float?
+  margen_promedio     Float?
+  recency             BigInt?
+  frecuencia          BigInt?
+  year_periodos       Decimal? @db.Decimal
+  mes                 String?
+  score_volumen       Int?
+  score_margen        Int?
+  score_recency       Int?
+  score_frecuencia    Int?
+  score_vcs           Decimal? @db.Decimal(10, 2)
+  segmento_numerico   Int?
+  segmento_categorico String?
+}
+
+model puntuaciones {
+  id         Int    @id @default(autoincrement())
+  nombre     String @db.VarChar(255)
+  min_valor  Int
+  max_valor  Int
+  puntuacion Int?
+}
+
+model variable {
+  id     Int     @id @default(autoincrement())
+  nombre String? @db.VarChar(255)
+  peso   Float
+}

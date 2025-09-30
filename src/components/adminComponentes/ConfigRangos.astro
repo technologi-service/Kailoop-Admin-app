@@ -1,0 +1,162 @@
+---
+import '../../styles/global.css';
+import { actions } from "astro:actions";
+const {data, error} = await Astro.callAction(actions.getRangos, {})
+
+// Agrupa los rangos por nombre
+let grupos: Record<string, any[]> = {};
+if (Array.isArray(data)) {
+  for (const rango of data) {
+    if (!grupos[rango.nombre]) grupos[rango.nombre] = [];
+    grupos[rango.nombre].push(rango);
+  }
+}
+---
+
+<section class="min-h-screen flex items-center justify-center" style="background-color: #192D45;">
+  <div class="w-full max-w-4xl space-y-8">
+    <h2 class="text-2xl font-extrabold text-center mb-4" style="color: #F2F2F2;">Configuración de Rangos</h2>
+    <div id="success-message-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 items-center justify-center z-50">
+      <div class="bg-[#222F55] border-2 border-[#0099FF] rounded-xl px-8 py-6 text-center shadow-xl">
+        <span class="text-green-400 text-2xl font-bold">¡Cambios guardados con éxito!</span>
+      </div>
+    </div>
+    {error && <p class="text-red-500">{error.message}</p>}
+    {Object.keys(grupos).length > 0 ? (
+      <div class="space-y-6">
+        {Object.entries(grupos).map(([nombreGrupo, rangos]) => (
+          <div class="bg-[#222F55] border-2 border-[#0099FF] rounded-xl shadow-lg p-4">
+            <h3 class="text-xl font-bold mb-4 pb-2 border-b border-[#0099FF]" style="color: #0099FF;">{nombreGrupo}</h3>
+            <form class="grupo-form" autocomplete="off" data-grupo={nombreGrupo}>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {rangos.map((rango, idx) => (
+                  <div class="bg-[#ABABAA] rounded-lg p-3 shadow flex flex-col gap-2" data-rango={rango.id}>
+                    <input type="hidden" name="id" value={rango.id} />
+                    <div class="flex flex-col gap-1">
+                      <label class="text-sm font-semibold mb-0" style="color: #0099FF;">Min Valor</label>
+                      <input type="number" name={`min_valor_${idx}`} value={rango.min_valor ?? ''} class="rounded-lg px-2 py-1 border border-[#127F7F] focus:outline-none focus:ring-2 focus:ring-[#0099FF]" style="background-color: #F2F2F2; color: #192D45;" placeholder="Mínimo" />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label class="text-sm font-semibold mb-0" style="color: #0099FF;">Max Valor</label>
+                      <input type="number" name={`max_valor_${idx}`} value={rango.max_valor ?? ''} class="rounded-lg px-2 py-1 border border-[#127F7F] focus:outline-none focus:ring-2 focus:ring-[#0099FF]" style="background-color: #F2F2F2; color: #192D45;" placeholder="Máximo" />
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <label class="text-sm font-semibold mb-0" style="color: #0099FF;">Puntuación</label>
+                      <div class="flex items-center gap-1">
+                        {Array.from({ length: 5 }).map((_, starIdx) => (
+                          <span
+                            class={
+                              starIdx < (rango.puntuacion ?? 0)
+                                ? 'text-yellow-400 text-xl cursor-pointer'
+                                : 'text-gray-300 text-xl cursor-pointer'
+                            }
+                            onclick={`this.parentElement.parentElement.parentElement.querySelector('input[name=\'puntuacion_${idx}\']').value = ${starIdx + 1}; this.parentElement.querySelectorAll('span').forEach((el, i) => el.className = i < ${starIdx + 1} ? 'text-yellow-400 text-xl cursor-pointer' : 'text-gray-300 text-xl cursor-pointer');`}
+                          >★</span>
+                        ))}
+                        <input type="hidden" name={`puntuacion_${idx}`} value={rango.puntuacion ?? 0} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <button type="submit" class="w-full py-1 rounded-lg font-bold text-sm shadow hover:scale-105 transition-transform mt-2"
+                style="background: linear-gradient(90deg, #192D45 60%, #0099FF 100%); color: #ABABAA; border: none;">
+                Guardar grupo
+              </button>
+            </form>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p class="text-center" style="color: #ABABAA;">No hay rangos registrados.</p>
+    )}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.grupo-form').forEach(form => {
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            /** @type {{ id: number, min_valor: number|null, max_valor: number|null, puntuacion: number|null }[]} */
+            /** @type {{ id: number, min_valor: number|null, max_valor: number|null, puntuacion: number|null }[]} */
+            const rangos: { id: number, min_valor: number|null, max_valor: number|null, puntuacion: number|null }[] = [];
+            const grupoDivs = form.querySelectorAll('[data-rango]');
+            let valid = true;
+            let lastMax: number | null = null;
+            const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+            if (submitBtn) submitBtn.disabled = true;
+
+            // Detecta el nombre del grupo
+            const grupoNombre = form.getAttribute('data-grupo');
+            const esRecency = grupoNombre && grupoNombre.toLowerCase() === 'recency';
+
+            grupoDivs.forEach((div, idx) => {
+              const idInput = div.querySelector('input[name="id"]') as HTMLInputElement | null;
+              const id = idInput ? idInput.value : null;
+              const minInput = div.querySelector(`input[name="min_valor_${idx}"]`) as HTMLInputElement | null;
+              const maxInput = div.querySelector(`input[name="max_valor_${idx}"]`) as HTMLInputElement | null;
+              const puntuacionInput = div.querySelector(`input[name="puntuacion_${idx}"]`) as HTMLInputElement | null;
+              const min_valor = minInput ? parseInt(minInput.value) : null;
+              const max_valor = maxInput ? parseInt(maxInput.value) : null;
+              const puntuacion = puntuacionInput ? parseInt(puntuacionInput.value) : null;
+
+              // Validación normal o inversa según el grupo
+              if (lastMax !== null && min_valor !== null && max_valor !== null) {
+                if (
+                  (!esRecency && (min_valor <= lastMax || max_valor <= lastMax)) ||
+                  (esRecency && (min_valor >= lastMax || max_valor >= lastMax))
+                ) {
+                  valid = false;
+                  if (minInput) minInput.classList.add('border-red-500');
+                  if (maxInput) maxInput.classList.add('border-red-500');
+                } else {
+                  if (minInput) minInput.classList.remove('border-red-500');
+                  if (maxInput) maxInput.classList.remove('border-red-500');
+                }
+              }
+              lastMax = max_valor;
+
+              rangos.push({ id: Number(id), min_valor, max_valor, puntuacion });
+            });
+
+            if (!valid) {
+              alert(esRecency
+                ? 'En recency, los valores mínimos y máximos deben ser menores que los del rango anterior.'
+                : 'Los valores mínimos y máximos deben ser mayores que los del rango anterior.');
+              if (submitBtn) submitBtn.disabled = false;
+              return;
+            }
+
+            const payload = { rangos };
+            try {
+              const res = await fetch('/api/update-rangos', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const result = await res.json();
+              if (result.ok) {
+                const overlay = document.getElementById('success-message-overlay');
+                if (overlay) {
+                  overlay.classList.remove('hidden');
+                  overlay.classList.add('flex');
+                  setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                    window.location.reload();
+                  }, 1500);
+                } else {
+                  window.location.reload();
+                }
+              } else {
+                alert('Hubo un error al guardar los cambios.');
+                if (submitBtn) submitBtn.disabled = false;
+              }
+            } catch (err) {
+              alert('Hubo un error al guardar los cambios.');
+              if (submitBtn) submitBtn.disabled = false;
+            }
+          });
+        });
+      });
+    </script>
+  </div>
+</section>

@@ -4,11 +4,20 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "start": "HOST=0.0.0.0 PORT=8080 node ./dist/server/entry.mjs",
+    "build": "npm run prisma:generate && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
-    "astro": "^5.14.1"
+    "@astrojs/node": "^9.4.4",
+    "@prisma/client": "^6.16.2",
+    "@tailwindcss/vite": "^4.1.13",
+    "astro": "^5.14.1",
+    "tailwindcss": "^4.1.13"
+  },
+  "devDependencies": {
+    "prisma": "^6.16.2"
   }
 }

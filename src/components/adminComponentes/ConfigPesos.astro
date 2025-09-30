@@ -1,0 +1,104 @@
+---
+import '../../styles/global.css';
+import { actions } from "astro:actions";
+const { data, error } = await Astro.callAction(actions.getPesos, {});
+---
+
+<section class="min-h-screen flex items-center justify-center" style="background-color: #192D45;">
+  <div class="w-full max-w-2xl bg-[#222F55] border-2 border-[#0099FF] rounded-2xl shadow-xl p-8">
+    <h2 class="text-3xl font-extrabold text-center mb-6" style="color: #F2F2F2;">Configuración de Pesos</h2>
+    <div id="success-message-overlay" class="hidden fixed inset-0 bg-black bg-opacity-70 items-center justify-center z-50">
+      <div class="bg-[#222F55] border-2 border-[#0099FF] rounded-xl px-8 py-6 text-center shadow-xl">
+        <span class="text-green-400 text-2xl font-bold">¡Peso actualizado con éxito!</span>
+      </div>
+    </div>
+    {error && <p class="text-red-500">{error.message}</p>}
+    {Array.isArray(data) && data.length > 0 ? (
+      <div class="space-y-8">
+        {data.map((peso, idx) => (
+          <form class="peso-form" data-peso={peso.id}>
+            <div class="bg-[#ABABAA] rounded-lg p-6 shadow flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <h3 class="text-xl font-bold mb-2" style="color: #192D45;">{peso.nombre ?? 'Sin nombre'}</h3>
+              </div>
+              <div class="flex flex-col items-end">
+                <span class="text-sm font-semibold mb-1" style="color: #0099FF;">Peso actual:</span>
+                <input
+                  type="number"
+                  name="peso"
+                  value={peso.peso}
+                  min="0"
+                  step="0.01"
+                  class="text-lg font-bold rounded-lg px-2 py-1 border border-[#127F7F] focus:outline-none focus:ring-2 focus:ring-[#0099FF]"
+                  style="background-color: #F2F2F2; color: #192D45; width: 80px;"
+                />
+                <input type="hidden" name="id" value={peso.id} />
+                <button
+                  type="submit"
+                  class="mt-4 px-4 py-2 rounded-lg font-bold transition duration-200"
+                  style="background: linear-gradient(90deg, #192D45 60%, #0099FF 100%); color: #ABABAA; border: none;"
+                >
+                  Guardar Peso
+                </button>
+              </div>
+            </div>
+          </form>
+        ))}
+      </div>
+    ) : (
+      <p class="text-center" style="color: #ABABAA;">No hay pesos registrados.</p>
+    )}
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.peso-form').forEach(form => {
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const idInput = form.querySelector('input[name="id"]') as HTMLInputElement | null;
+            const pesoInput = form.querySelector('input[name="peso"]') as HTMLInputElement | null;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+
+            const id = idInput ? idInput.value : null;
+            const peso = pesoInput ? parseFloat(pesoInput.value) : null;
+
+            if (id === null || peso === null || isNaN(peso)) {
+              alert('Peso inválido.');
+              if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+              return;
+            }
+
+            const payload = { id: Number(id), peso };
+            try {
+              const res = await fetch('/api/update-pesos', {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              const result = await res.json();
+              if (result.ok) {
+                const overlay = document.getElementById('success-message-overlay');
+                if (overlay) {
+                  overlay.classList.remove('hidden');
+                  overlay.classList.add('flex');
+                  setTimeout(() => {
+                    overlay.classList.remove('flex');
+                    overlay.classList.add('hidden');
+                    window.location.reload();
+                  }, 1500);
+                } else {
+                  window.location.reload();
+                }
+              } else {
+                alert('Hubo un error al guardar el peso.');
+                if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+              }
+            } catch (err) {
+              alert('Hubo un error al guardar el peso.');
+              if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+            }
+          });
+        });
+      });
+    </script>
+  </div>
+</section>
