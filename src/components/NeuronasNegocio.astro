@@ -1,0 +1,92 @@
+---
+// Este componente Astro representa las funcionalidades de las Neuronas de Negocio.
+// Usa TailwindCSS. Asegúrate de tener Tailwind configurado en tu proyecto Astro.
+---
+
+<section class="min-h-screen bg-[#192D45] text-[#F2F2F2] flex items-center justify-center">
+  <div class="w-full max-w-6xl mx-auto px-4 py-12">
+    <!-- Encabezado centrado -->
+    <header class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[#0099FF]">
+        Funcionalidades Neuronas de Negocio
+      </h1>
+      <p class="mt-3 max-w-3xl mx-auto text-sm md:text-base text-[#ABABAA]">
+        Value Chain Score es la "neurona" que analiza el comportamiento de las empresas B2B, midiendo
+        <span class="text-[#0099FF]">volumen</span>, <span class="text-[#0099FF]">margen</span>, <span class="text-[#0099FF]">frecuencia</span> y <span class="text-[#0099FF]">antigüedad</span> desde la última compra.
+      </p>
+    </header>
+
+    <!-- Tarjetas centradas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-stretch">
+      <!-- Conecta -->
+      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
+        <div class="text-center">
+          <img src="/images/icon-connect.png" alt="Conecta" class="h-16 mx-auto mb-4" />
+          <h2 class="text-xl font-semibold text-[#0099FF]">Conecta</h2>
+        </div>
+        <ul class="mt-4 space-y-3 text-[#ABABAA]">
+          <li>
+            <a href="https://docs.google.com/uc?id=1Xqvjk1j8Slc8YyGeTPdBwcY5JrgWleO9&export=download" download class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Descargar plantilla CSV
+            </a>
+          </li>
+          <li>
+            <a href="https://kukulcanai.app.n8n.cloud/form/75bfc183-666e-48e0-8f92-3dee95f6452d" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Subir datos
+            </a>
+          </li>
+          <li>
+            <a href="/admin/neuronas/vcs/api" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Acceso por API
+            </a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Administra -->
+      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
+        <div class="text-center">
+          <img src="/images/icon-administra.png" alt="Administra" class="h-16 mx-auto mb-4" />
+          <h2 class="text-xl font-semibold text-[#0099FF]">Administra</h2>
+        </div>
+        <ul class="mt-4 space-y-3 text-[#ABABAA]">
+          <li>
+            <a href="/admin/neuronas/configVcs" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Configuración "Neurona"
+            </a>
+          </li>
+          <li>
+            <a href="/admin/neuronas/vcs/desarrollo" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Desarrollo "Neurona"
+            </a>
+          </li>
+        </ul>
+      </article>
+
+      <!-- Consulta -->
+      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
+        <div class="text-center">
+          <img src="/images/icon-consulta.png" alt="Consulta" class="h-16 mx-auto mb-4" />
+          <h2 class="text-xl font-semibold text-[#0099FF]">Consulta</h2>
+        </div>
+        <ul class="mt-4 space-y-3 text-[#ABABAA]">
+          <li>
+            <a href="/admin/neuronas/vcs/bi" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Acceso herramienta BI
+            </a>
+          </li>
+          <li>
+            <a href="/admin/neuronas/vcs/kpis" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
+              Acceso directo KPIs
+            </a>
+          </li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- Nota final centrada -->
+    <p class="mt-8 text-center text-[#ABABAA] text-sm max-w-4xl mx-auto">
+      La neurona VCS impulsa una nueva era de monetización B2B, transformando datos de comportamiento en decisiones rentables que maximizan ingresos, eficiencia y fidelización.
+    </p>
+  </div>
+</section>

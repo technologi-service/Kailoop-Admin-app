@@ -1,7 +1,12 @@
 ---
 
 import '../../styles/global.css';
+import ChatBot from '../ChatBot.astro';
 ---
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+</head>
 
 <section class="flex flex-col md:flex-row gap-8 justify-center items-center min-h-screen" style="background-color: #192D45;">
   <a href="/admin/pesos"
@@ -35,3 +40,5 @@ import '../../styles/global.css';
     </div>
   </a>
 </section>
+
+<ChatBot />

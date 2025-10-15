@@ -1,0 +1,19 @@
+---
+// Este componente Astro inicializa el chatbot usando n8n.
+---
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+</head>
+
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://kukulcanai.app.n8n.cloud/webhook/ef2cb0b8-3dc1-4e7b-b4be-c32824d54f09/chat',
+    initialMessages: [
+    'Hi 👋',
+    'My name is kukulcanNexus. How can I assist you today?'
+  ],
+  });
+</script>
