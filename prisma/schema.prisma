@@ -7,40 +7,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model catalogo_segmentos_vcs {
-  id                Int     @id @default(autoincrement())
-  segmento_numerico Int     @unique
-  nombre_categoria  String
-  estrellas         Int
-  score_min         Decimal @db.Decimal(3, 1)
-  score_max         Decimal @db.Decimal(3, 1)
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model carga_de_datos_muelles {
+  id_cliente      String?   @db.VarChar(50)
+  id_venta        String?   @db.VarChar(50)
+  id_producto     String?   @db.VarChar(50)
+  nombre_producto String?
+  fecha           DateTime? @db.Date
+  volumen         Decimal?  @db.Decimal(10, 2)
+
+  @@ignore
 }
 
-model datos_calculados_clientes {
-  id                  Int      @id @default(autoincrement())
-  id_cliente          String?
-  nombre_empresa      String?
-  volumen_total       Float?
-  margen_promedio     Float?
-  recency             BigInt?
-  frecuencia          BigInt?
-  year_periodos       Decimal? @db.Decimal
-  mes                 String?
-  score_volumen       Int?
-  score_margen        Int?
-  score_recency       Int?
-  score_frecuencia    Int?
-  score_vcs           Decimal? @db.Decimal(10, 2)
-  segmento_numerico   Int?
-  segmento_categorico String?
+model catalogo_segmentos_vcs {
+  id        Int     @id @default(autoincrement())
+  segmento  String  @unique(map: "catalogo_segmentos_vcs_segmento_numerico_key")
+  estrellas String
+  score_min Decimal @db.Decimal(3, 1)
+  score_max Decimal @db.Decimal(3, 1)
 }
 
 model puntuaciones {
-  id         Int    @id @default(autoincrement())
-  nombre     String @db.VarChar(255)
-  min_valor  Int
-  max_valor  Int
+  id         Int      @id @default(autoincrement())
+  nombre     String?  @db.VarChar(255)
+  min_valor  Decimal? @db.Decimal
+  max_valor  Decimal? @db.Decimal
   puntuacion Int?
+}
+
+model rfm_clientes {
+  id_cliente     String    @id
+  nombre_empresa String?
+  recencia       Int?
+  frequencia     Int?
+  volumen        Decimal?  @db.Decimal(10, 2)
+  r_score        Int?
+  f_score        Int?
+  v_score        Int?
+  calculado_en   DateTime? @default(now()) @db.Timestamptz(6)
+  score          Decimal?  @db.Decimal(6, 2)
+  segmento       String?
 }
 
 model variable {
