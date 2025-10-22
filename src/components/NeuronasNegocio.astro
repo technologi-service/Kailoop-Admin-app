@@ -1,92 +1,169 @@
 ---
-// Este componente Astro representa las funcionalidades de las Neuronas de Negocio.
-// Usa TailwindCSS. Asegúrate de tener Tailwind configurado en tu proyecto Astro.
+// --- SCRIPT DE ASTRO ---
+// (Importa tu imagen de fondo para el header)
+import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
 ---
 
-<section class="min-h-screen bg-[#192D45] text-[#F2F2F2] flex items-center justify-center">
-  <div class="w-full max-w-6xl mx-auto px-4 py-12">
-    <!-- Encabezado centrado -->
-    <header class="text-center mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[#0099FF]">
-        Funcionalidades Neuronas de Negocio
-      </h1>
-      <p class="mt-3 max-w-3xl mx-auto text-sm md:text-base text-[#ABABAA]">
-        Value Chain Score es la "neurona" que analiza el comportamiento de las empresas B2B, midiendo
-        <span class="text-[#0099FF]">volumen</span>, <span class="text-[#0099FF]">margen</span>, <span class="text-[#0099FF]">frecuencia</span> y <span class="text-[#0099FF]">antigüedad</span> desde la última compra.
-      </p>
-    </header>
+<div class="min-h-screen bg-white">
 
-    <!-- Tarjetas centradas -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-stretch">
-      <!-- Conecta -->
-      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
-        <div class="text-center">
-          <img src="/images/icon-connect.png" alt="Conecta" class="h-16 mx-auto mb-4" />
-          <h2 class="text-xl font-semibold text-[#0099FF]">Conecta</h2>
-        </div>
-        <ul class="mt-4 space-y-3 text-[#ABABAA]">
-          <li>
-            <a href="https://docs.google.com/uc?id=1Xqvjk1j8Slc8YyGeTPdBwcY5JrgWleO9&export=download" download class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Descargar plantilla CSV
-            </a>
-          </li>
-          <li>
-            <a href="https://kukulcanai.app.n8n.cloud/form/75bfc183-666e-48e0-8f92-3dee95f6452d" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Subir datos
-            </a>
-          </li>
-          <li>
-            <a href="/admin/neuronas/vcs/api" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Acceso por API
-            </a>
-          </li>
-        </ul>
-      </article>
+<div class="min-h-screen bg-white">
+  <header
+  class="relative overflow-hidden
+         bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark
+         bg-cover bg-no-repeat bg-center"
+  style="background-image: url('/src/assets/images/dragones6.png');"
+>
+  <div class="container mx-auto px-6 py-8
+              grid grid-cols-1 md:grid-cols-2
+              gap-8 items-center min-h-[250px] md:min-h-[300px] lg:min-h-[350px]">
 
-      <!-- Administra -->
-      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
-        <div class="text-center">
-          <img src="/images/icon-administra.png" alt="Administra" class="h-16 mx-auto mb-4" />
-          <h2 class="text-xl font-semibold text-[#0099FF]">Administra</h2>
-        </div>
-        <ul class="mt-4 space-y-3 text-[#ABABAA]">
-          <li>
-            <a href="/admin/neuronas/configVcs" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Configuración "Neurona"
-            </a>
-          </li>
-          <li>
-            <a href="/admin/neuronas/vcs/desarrollo" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Desarrollo "Neurona"
-            </a>
-          </li>
-        </ul>
-      </article>
+    <div class="hidden md:block">
+      </div>
 
-      <!-- Consulta -->
-      <article class="p-6 rounded-2xl border border-[#0099FF] bg-[#222F55] shadow-lg flex flex-col">
-        <div class="text-center">
-          <img src="/images/icon-consulta.png" alt="Consulta" class="h-16 mx-auto mb-4" />
-          <h2 class="text-xl font-semibold text-[#0099FF]">Consulta</h2>
-        </div>
-        <ul class="mt-4 space-y-3 text-[#ABABAA]">
-          <li>
-            <a href="/admin/neuronas/vcs/bi" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Acceso herramienta BI
-            </a>
-          </li>
-          <li>
-            <a href="/admin/neuronas/vcs/kpis" class="inline-flex items-center justify-center w-full rounded-lg border border-[#0099FF] px-4 py-2 hover:border-[#205FA4] hover:text-[#205FA4] transition">
-              Acceso directo KPIs
-            </a>
-          </li>
-        </ul>
-      </article>
-    </div>
+ <div class="text-center md:text-right md:pr-12">
+  <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+    Bienvenidos a
+  </h1>
+  <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+    KAIloop Nexus
+  </h2>
+  <p class="text-xl text-green-500 italic font-bold leading-snug">
+    El centro de gestión
+  </p>
+  <p class="text-xl text-green-500 italic font-bold leading-snug">
+    Inteligente de Kukulcan AI
+  </p>
+</div>
 
-    <!-- Nota final centrada -->
-    <p class="mt-8 text-center text-[#ABABAA] text-sm max-w-4xl mx-auto">
-      La neurona VCS impulsa una nueva era de monetización B2B, transformando datos de comportamiento en decisiones rentables que maximizan ingresos, eficiencia y fidelización.
-    </p>
   </div>
-</section>
+</header>
+  <main class="relative bg-white">
+    <div class="container mx-auto px-6 py-12">
+
+      <div class="mb-8">
+        <h2 class="text-3xl font-semibold text-gray-700">
+          Funcionalidades Neuronas de Negocio
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-0 mb-12 border-t border-b border-gray-300">
+
+        <div class="lg:col-span-2 flex flex-col items-center justify-start p-8 border-r border-gray-300 text-center">
+          <img
+            src="/src/assets/images/neuronas-de-negocio.png"
+            alt="Value Chain Score Icon"
+            class="w-36 h-36 mb-4"
+          />
+          <h3 class="text-xl font-bold text-red-600 mb-2">VCS</h3>
+          <p class="text-sm text-gray-600 italic leading-relaxed max-w-sm">
+            Value Chain Score es la "neurona" que analiza el comportamiento de las empresas B2B, midiendo volumen, margen, frecuencia y antigüedad desde la última compra.
+          </p>
+        </div>
+
+        <div class="flex flex-col items-center p-8 border-r border-gray-300 text-center">
+          <img
+            src="/src/assets/images/logoConecta.png"
+            alt="Conecta Icon"
+            class="w-16 h-16 mb-4"
+          />
+          <h4 class="text-lg font-semibold text-gray-800 mb-6">Conecta</h4>
+          <nav>
+            <ul class="space-y-6">
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/icon-csv-download.png" alt="Descargar" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Descargar<br/><span class="text-blue-600">plantilla CSV</span></span>
+                </a>
+              </li>
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/lodoCsv.png" alt="Subir" class="w-8 h-8 mb-2">
+                  <span class="font-medium text-blue-600">Subir CSV</span>
+                </a>
+              </li>
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/logoApi.png" alt="API" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Acceso por<br/><span class="text-blue-600">API</span></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="flex flex-col items-center p-8 border-r border-gray-300 text-center">
+          <img
+            src="/src/assets/images/logoAdministra.png"
+            alt="Administra Icon"
+            class="w-16 h-16 mb-4"
+          />
+          <h4 class="text-lg font-semibold text-gray-800 mb-6">Administra</h4>
+          <nav>
+            <ul class="space-y-6">
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/icon-config.png" alt="Configuración" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Configuración<br/>"Neurona"</span>
+                </a>
+              </li>
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/candado.png" alt="Desarrollo" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Desarrollo<br/>"Neurona"</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="flex flex-col items-center p-8 text-center">
+          <img
+            src="/src/assets/images/logoConsulta.png"
+            alt="Consulta Icon"
+            class="w-16 h-16 mb-4"
+          />
+          <h4 class="text-lg font-semibold text-gray-800 mb-6">Consulta</h4>
+          <nav>
+            <ul class="space-y-6">
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/logo_acccesoHerramientas.png" alt="BI" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Acceso<br/>herramienta <span class="text-blue-600">BI</span></span>
+                </a>
+              </li>
+              <li class="flex flex-col items-center">
+                <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
+                  <img src="/src/assets/images/icon-kpi.png" alt="KPIs" class="w-8 h-8 mb-2">
+                  <span class="font-medium">Acceso directo<br/><span class="text-blue-600">KPIs</span></span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="relative overflow-hidden bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark p-8">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex-1">
+        <p class="text-base text-white leading-relaxed max-w-lg">
+          <span class="font-semibold">La neurona VCS impulsa una nueva era de monetización B2B,</span>{" "}
+          <span class="italic">transformando datos de comportamiento en decisiones rentables que maximizan ingresos, eficiencia y fidelización.</span>
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <div class="w-12 h-12 rounded-lg bg-maya-cyan/20 flex items-center justify-center">
+          <div class="w-8 h-8 rounded bg-maya-cyan/40"></div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-maya-cyan">Kukulcan AI</div>
+          <div class="text-sm text-gray-300">Consulting</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
