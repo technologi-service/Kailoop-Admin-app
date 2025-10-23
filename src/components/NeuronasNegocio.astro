@@ -1,52 +1,53 @@
 ---
 // --- SCRIPT DE ASTRO ---
-// (Importa tu imagen de fondo para el header)
-import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
+// No se usa el import de imagenDeFondoDragones, ya que el header usa 'dragones6.png' directamente
+// Si 'portada-dragones.png' no existe o no se usa, este import puede ser eliminado.
+// import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
 ---
 
-<div class="min-h-screen bg-white">
+<div class="min-h-screen bg-white font-sans text-gray-800">
 
-<div class="min-h-screen bg-white">
   <header
-  class="relative overflow-hidden
-         bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark
-         bg-cover bg-no-repeat bg-center"
-  style="background-image: url('/src/assets/images/dragones6.png');"
->
-  <div class="container mx-auto px-6 py-8
-              grid grid-cols-1 md:grid-cols-2
-              gap-8 items-center min-h-[250px] md:min-h-[300px] lg:min-h-[350px]">
+    class="relative overflow-hidden
+           bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark
+           bg-cover bg-no-repeat bg-center"
+    style="background-image: url('/src/assets/images/dragones6.png');"
+  >
+    <div class="absolute inset-0 bg-black opacity-30"></div>
 
-    <div class="hidden md:block">
+    <div class="container mx-auto px-6 py-8
+                grid grid-cols-1 md:grid-cols-2
+                gap-8 items-center min-h-[250px] md:min-h-[300px] lg:min-h-[350px] relative z-10">
+
+      <div class="hidden md:block">
       </div>
 
- <div class="text-center md:text-right md:pr-12">
-  <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
-    Bienvenidos a
-  </h1>
-  <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
-    KAIloop Nexus
-  </h2>
-  <p class="text-xl text-green-500 italic font-bold leading-snug">
-    El centro de gestión
-  </p>
-  <p class="text-xl text-green-500 italic font-bold leading-snug">
-    Inteligente de Kukulcan AI
-  </p>
-</div>
+      <div class="text-center md:text-right md:pr-12">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-1 leading-tight">
+          Bienvenidos a
+        </h1>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-1 leading-tight">
+          KAIloop Nexus
+        </h2>
+        <p class="text-xl md:text-2xl text-green-400 italic font-bold leading-snug">
+          El centro de gestión
+        </p>
+        <p class="text-xl md:text-2xl text-green-400 italic font-bold leading-snug">
+          Inteligente de Kukulcan AI
+        </p>
+      </div>
+    </div>
+  </header>
 
-  </div>
-</header>
-  <main class="relative bg-white">
-    <div class="container mx-auto px-6 py-12">
+  <main class="relative bg-white flex-grow"> <div class="container mx-auto px-6 py-12">
 
-      <div class="mb-8">
+      <section class="mb-8">
         <h2 class="text-3xl font-semibold text-gray-700">
           Funcionalidades Neuronas de Negocio
         </h2>
-      </div>
+      </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-5 gap-0 mb-12 border-t border-b border-gray-300">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-0 mb-12 border-t border-b border-gray-300">
 
         <div class="lg:col-span-2 flex flex-col items-center justify-start p-8 border-r border-gray-300 text-center">
           <img
@@ -64,26 +65,26 @@ import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
           <img
             src="/src/assets/images/logoConecta.png"
             alt="Conecta Icon"
-            class="w-16 h-16 mb-4"
+            class="w-20 h-20 mb-4 hover:scale-110 transition-transform duration-300"
           />
           <h4 class="text-lg font-semibold text-gray-800 mb-6">Conecta</h4>
           <nav>
             <ul class="space-y-6">
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/icon-csv-download.png" alt="Descargar" class="w-8 h-8 mb-2">
+                  <img src="/src/assets/images/descargar.png" alt="Descargar" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium">Descargar<br/><span class="text-blue-600">plantilla CSV</span></span>
                 </a>
               </li>
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/lodoCsv.png" alt="Subir" class="w-8 h-8 mb-2">
+                  <img src="/src/assets/images/lodoCsv.png" alt="Subir" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium text-blue-600">Subir CSV</span>
                 </a>
               </li>
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/logoApi.png" alt="API" class="w-8 h-8 mb-2">
+                  <img src="/src/assets/images/logoApi.png" alt="API" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium">Acceso por<br/><span class="text-blue-600">API</span></span>
                 </a>
               </li>
@@ -95,14 +96,14 @@ import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
           <img
             src="/src/assets/images/logoAdministra.png"
             alt="Administra Icon"
-            class="w-16 h-16 mb-4"
+            class="w-20 h-20 mb-4 hover:scale-110 transition-transform duration-300"
           />
           <h4 class="text-lg font-semibold text-gray-800 mb-6">Administra</h4>
           <nav>
             <ul class="space-y-6">
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/icon-config.png" alt="Configuración" class="w-8 h-8 mb-2">
+                  <img src="/src/assets/images/Ca.png" alt="Configuración" class="w-8 h-8 mb-2">
                   <span class="font-medium">Configuración<br/>"Neurona"</span>
                 </a>
               </li>
@@ -120,7 +121,7 @@ import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
           <img
             src="/src/assets/images/logoConsulta.png"
             alt="Consulta Icon"
-            class="w-16 h-16 mb-4"
+            class="w-20 h-20 mb-4 hover:scale-110 transition-transform duration-300"
           />
           <h4 class="text-lg font-semibold text-gray-800 mb-6">Consulta</h4>
           <nav>
@@ -133,7 +134,7 @@ import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
               </li>
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/icon-kpi.png" alt="KPIs" class="w-8 h-8 mb-2">
+                  <img src="/src/assets/images/kpi.png" alt="KPIs" class="w-8 h-8 mb-2">
                   <span class="font-medium">Acceso directo<br/><span class="text-blue-600">KPIs</span></span>
                 </a>
               </li>
@@ -141,29 +142,54 @@ import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
           </nav>
         </div>
       </div>
-
     </div>
   </main>
 
-  <footer class="relative overflow-hidden bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark p-8">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-      <div class="flex-1">
-        <p class="text-base text-white leading-relaxed max-w-lg">
-          <span class="font-semibold">La neurona VCS impulsa una nueva era de monetización B2B,</span>{" "}
-          <span class="italic">transformando datos de comportamiento en decisiones rentables que maximizan ingresos, eficiencia y fidelización.</span>
+  <footer class="bg-gray-900 text-white py-8 px-4 md:px-8 relative overflow-hidden w-full mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between z-10 relative w-full">
+
+      <div class="w-full md:w-2/3 text-center md:text-left mb-6 md:mb-0 md:pr-8">
+        <p class="text-lg leading-relaxed">
+          La neurona VCS impulsa una nueva era de monetización B2B,
+          transformando datos de comportamiento en decisiones rentables
+          que maximizan ingresos, eficiencia y fidelización.
         </p>
       </div>
 
-      <div class="flex items-center gap-3 flex-shrink-0">
-        <div class="w-12 h-12 rounded-lg bg-maya-cyan/20 flex items-center justify-center">
-          <div class="w-8 h-8 rounded bg-maya-cyan/40"></div>
-        </div>
-        <div>
-          <div class="text-xl font-bold text-maya-cyan">Kukulcan AI</div>
-          <div class="text-sm text-gray-300">Consulting</div>
+      <div class="w-full md:w-1/3 flex flex-col items-center md:items-end">
+        <div class="flex items-center gap-2"> {/* Espacio entre el SVG y el texto */}
+          <svg width="80" height="40" viewBox="0 0 200 100" fill="#E5E7EB" xmlns="http://www.w3.org/2000/svg"
+               aria-labelledby="logoTitle logoDesc" role="img" class="flex-shrink-0">
+            <title id="logoTitle">Kukulcan AI Consulting Logo</title>
+            <desc id="logoDesc">Logo de Kukulcan AI Consulting, con un dragón y el texto.</desc>
+
+            {/* **REEMPLAZA ESTOS PATHS Y TEXTOS CON EL SVG REAL DE TU LOGO** */}
+            {/* Ejemplo de un dragón simplificado y texto */}
+            <path d="M20 50 C 30 20, 70 20, 80 50 C 70 80, 30 80, 20 50 Z" fill="#E5E7EB"/> {/* Cuerpo del dragón */}
+            <circle cx="25" cy="45" r="3" fill="white"/> {/* Ojo */}
+            <path d="M22 47 Q25 42, 28 47" stroke="black" stroke-width="1" fill="none"/> {/* Iris simplificado */}
+
+            <text x="90" y="45" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#E5E7EB">Kukulcan AI</text>
+            <text x="90" y="70" font-family="Arial, sans-serif" font-size="16" fill="#E5E7EB">Consulting</text>
+
+            <line x1="90" y1="75" x2="190" y2="75" stroke="#E5E7EB" stroke-width="1.5"/>
+          </svg>
+          <div>
+            <h3 class="text-xl font-semibold">Kukulcan AI</h3>
+            <p class="text-sm">Consulting</p>
+          </div>
         </div>
       </div>
+
+    </div>
+
+    <div class="absolute inset-0 z-0">
+      <div class="absolute top-1/4 left-1/4 w-12 h-12 bg-gray-700 opacity-20 transform rotate-45"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-10 h-10 bg-gray-700 opacity-20 transform rotate-45"></div>
+      <div class="absolute top-1/3 left-1/2 w-2 h-2 rounded-full bg-gray-600 opacity-30"></div>
+      <div class="absolute bottom-1/3 right-1/3 w-2 h-2 rounded-full bg-gray-600 opacity-30"></div>
     </div>
   </footer>
 
 </div>
+
