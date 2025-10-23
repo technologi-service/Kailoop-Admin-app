@@ -5,39 +5,39 @@
 // import imagenDeFondoDragones from '/src/assets/images/portada-dragones.png';
 ---
 
-<div class="min-h-screen bg-white font-sans text-gray-800">
+<div class="min-h-screen bg-white">
 
+ <div class="min-h-screen bg-white">
   <header
-    class="relative overflow-hidden
-           bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark
-           bg-cover bg-no-repeat bg-center"
-    style="background-image: url('/src/assets/images/dragones6.png');"
-  >
-    <div class="absolute inset-0 bg-black opacity-30"></div>
+  class="relative overflow-hidden
+         bg-gradient-to-r from-maya-dark via-maya-deep to-maya-dark
+         bg-cover bg-no-repeat bg-center"
+  style="background-image: url('/src/assets/images/dragones6.png');"
+>
+  <div class="container mx-auto px-6 py-8
+              grid grid-cols-1 md:grid-cols-2
+              gap-8 items-center min-h-[250px] md:min-h-[300px] lg:min-h-[350px]">
 
-    <div class="container mx-auto px-6 py-8
-                grid grid-cols-1 md:grid-cols-2
-                gap-8 items-center min-h-[250px] md:min-h-[300px] lg:min-h-[350px] relative z-10">
-
-      <div class="hidden md:block">
+    <div class="hidden md:block">
       </div>
 
-      <div class="text-center md:text-right md:pr-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-1 leading-tight">
-          Bienvenidos a
-        </h1>
-        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-1 leading-tight">
-          KAIloop Nexus
-        </h2>
-        <p class="text-xl md:text-2xl text-green-400 italic font-bold leading-snug">
-          El centro de gestión
-        </p>
-        <p class="text-xl md:text-2xl text-green-400 italic font-bold leading-snug">
-          Inteligente de Kukulcan AI
-        </p>
-      </div>
-    </div>
-  </header>
+ <div class="text-center md:text-right md:pr-12">
+  <h1 class="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+    Bienvenidos a
+  </h1>
+  <h2 class="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+    KAIloop Nexus
+  </h2>
+  <p class="text-xl text-green-500 italic font-bold leading-snug">
+    El centro de gestión
+  </p>
+  <p class="text-xl text-green-500 italic font-bold leading-snug">
+    Inteligente de Kukulcan AI
+  </p>
+</div>
+
+  </div>
+</header>
 
   <main class="relative bg-white flex-grow"> <div class="container mx-auto px-6 py-12">
 
@@ -69,22 +69,22 @@
           />
           <h4 class="text-lg font-semibold text-gray-800 mb-6">Conecta</h4>
           <nav>
-            <ul class="space-y-6">
+            <ul class="space-y-4">
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/descargar.png" alt="Descargar" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
+                  <img src="/src/assets/images/descargar.png" alt="Descargar" class="w-12 h-12 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium">Descargar<br/><span class="text-blue-600">plantilla CSV</span></span>
                 </a>
               </li>
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/lodoCsv.png" alt="Subir" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
+                  <img src="/src/assets/images/lodoCsv.png" alt="Subir" class="w-12 h-12 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium text-blue-600">Subir CSV</span>
                 </a>
               </li>
               <li class="flex flex-col items-center">
                 <a href="#" class="inline-flex flex-col items-center text-gray-700 hover:text-blue-600">
-                  <img src="/src/assets/images/logoApi.png" alt="API" class="w-8 h-8 mb-2 hover:scale-110 transition-transform duration-300">
+                  <img src="/src/assets/images/logoApi.png" alt="API" class="w-12 h-12 mb-2 hover:scale-110 transition-transform duration-300">
                   <span class="font-medium">Acceso por<br/><span class="text-blue-600">API</span></span>
                 </a>
               </li>
@@ -143,9 +143,7 @@
         </div>
       </div>
     </div>
-  </main>
-
-  <footer class="bg-gray-900 text-white py-8 px-4 md:px-8 relative overflow-hidden w-full mt-auto">
+      <footer class="bg-gray-900 text-white py-8 px-4 md:px-8 relative overflow-hidden w-full mt-auto">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between z-10 relative w-full">
 
       <div class="w-full md:w-2/3 text-center md:text-left mb-6 md:mb-0 md:pr-8">
@@ -190,6 +188,9 @@
       <div class="absolute bottom-1/3 right-1/3 w-2 h-2 rounded-full bg-gray-600 opacity-30"></div>
     </div>
   </footer>
+  </main>
+
+
 
 </div>
 
